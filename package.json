@@ -1,0 +1,25 @@
+{
+  "name": "svelte-vite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@smui/button": "^6.0.0-beta.16",
+    "@smui/top-app-bar": "^6.0.0-beta.16",
+    "@sveltejs/vite-plugin-svelte": "^1.0.1",
+    "svelte": "^3.49.0",
+    "svelte-typewriter": "^3.0.1",
+    "vite": "^3.0.0"
+  },
+  "dependencies": {
+    "airtable": "^0.11.4",
+    "svelte-material-ui": "^6.0.0-beta.16",
+    "svelte-routing": "^1.6.0",
+    "three": "^0.142.0"
+  }
+}
