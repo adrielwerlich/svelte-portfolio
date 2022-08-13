@@ -2,7 +2,18 @@
   import { onMount } from "svelte"
 
   let canvas,
-    selected,
+    x = 0,
+    gameLayers,
+    gameSpeed = 5,
+    gameFrame = 0,
+    backgroundLayer1,
+    backgroundLayer2,
+    backgroundLayer3,
+    backgroundLayer4,
+    backgroundLayer5,
+    numberOfEnemies = 100,
+    enemiesArray = [],
+    enemyImage = '',
     ctx,
     CANVAS_WIDTH,
     CANVAS_HEIGHT,
@@ -11,7 +22,6 @@
     spriteHeight = 523,
     frameX,
     frameY,
-    gameFrame,
     staggerFrames = 11,
     playerState = "idle",
     spriteAnimations = [],
@@ -76,15 +86,95 @@
     ;(CANVAS_WIDTH = canvas.width = 600),
       (CANVAS_HEIGHT = canvas.height = 600),
       (playerImage = new Image())
-    playerImage.src = "src/assets/animations/dog/shadow_dog.png"
+    playerImage.src = "./assets/images/shadow_dog.png"
+
+    backgroundLayer1 = new Image()
+    backgroundLayer1.src = "./assets/images/backgroundLayers/layer-1.png"
+
+    backgroundLayer2 = new Image()
+    backgroundLayer1.src = "./assets/images/backgroundLayers/layer-2.png"
+
+    backgroundLayer3 = new Image()
+    backgroundLayer1.src = "./assets/images/backgroundLayers/layer-3.png"
+
+    backgroundLayer4 = new Image()
+    backgroundLayer1.src = "./assets/images/backgroundLayers/layer-4.png"
+
+    backgroundLayer5 = new Image()
+    backgroundLayer1.src = "./assets/images/backgroundLayers/layer-5.png"
     ;(frameX = 0), (frameY = 4), (gameFrame = 0)
 
+    loadLayers()
     animate()
   })
 
+  class Layer {
+    constructor(image, speedModifier) {
+      this.x = 0
+      this.y = 0
+      this.width = 2400
+      this.height = 700
+      this.x2 = this.width
+      this.image = image
+      this.speedModifier = speedModifier
+      this.speed = gameSpeed * this.speedModifier
+    }
+
+    update() {
+      this.speed = gameSpeed * this.speedModifier
+      if (this.x <= -this.width) {
+        this.x = 0
+      }
+      this.x = this.x - this.speed
+
+    }
+    draw() {
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+      ctx.drawImage(this.image, this.x + this.width, this.y, this.width, this.height)
+    }
+  }
+
+  class Enemy {
+    constructor() {
+        this.image = new Image()
+        this.image.src = './assets/images/enemies/enemy1.png'
+        this.x = Math.random() * canvas.width
+        this.y = Math.random() * canvas.height
+        this.speed = Math.random() * 4 - 2
+        this.spriteWidth = 293
+        this.spriteHeight = 155
+        this.width = this.spriteWidth / 2.5
+        this.height = this.spriteHeight / 2.5
+        this.frame = 0
+        this.flapSpeed = Math.floor(Math.random() * 3 + 1)
+
+    }
+    update() {
+        this.x += this.speed
+        this.y += this.speed
+        if (gameFrame % this.flapSpeed === 0) {
+            this.frame > 4 ? this.frame = 0 : this.frame++
+        }
+    }
+    draw() {
+        ctx.fillRect(this.x, this.y)
+    }
+  }
+
+  
+  function loadLayers() {
+      
+      const layer1 = new Layer(backgroundLayer1, 0.2),
+        layer2 = new Layer(backgroundLayer2, 0.4),
+        layer3 = new Layer(backgroundLayer3, 0.6),
+        layer4 = new Layer(backgroundLayer4, 0.8),
+        layer5 = new Layer(backgroundLayer5, 1)
+        gameLayers = [layer1, layer2, layer3, layer4, layer5]
+  }
+
   function animate() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-
+    gameLayers.forEach(layer => (layer.update(), layer.draw()))
     let position =
       Math.floor(gameFrame / staggerFrames) %
       spriteAnimations[playerState].loc.length
@@ -103,6 +193,8 @@
       spriteWidth,
       spriteHeight
     )
+
+    ctx.drawImage(backgroundLayer1, x, 0)
 
     if (gameFrame % staggerFrames == 0) {
       if (frameX < 6) frameX++

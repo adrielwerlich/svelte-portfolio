@@ -3,7 +3,11 @@
   import Home from "./routes/home.svelte"
   import About from "./routes/about.svelte"
   import Stacks from "./routes/stacks.svelte"
-  import DogAnimation from "./routes/game_and_animations/dog/dogAnimation.svelte"
+  import DogAnimation from "./routes/game_and_animations/game/dogAnimation.svelte"
+  import ParallaxBackground from "./routes/game_and_animations/game/parallaxBackground.svelte"
+  import Enemies from "./routes/game_and_animations/game/enemies.svelte"
+  import Explosions from "./routes/game_and_animations/game/explosions.svelte"
+  
   import TopBar from "./components/TopBar.svelte"
 
   export let url = ""
@@ -20,6 +24,9 @@
       <Route path="/about"><About /></Route>
       <Route path="/stacks"><Stacks /></Route>
       <Route path="/dog-animation"><DogAnimation /></Route>
+      <Route path="/parallax"><ParallaxBackground /></Route>
+      <Route path="/enemies"><Enemies /></Route>
+      <Route path="/explosions"><Explosions /></Route>
     </div>
   </Router>
 </main>

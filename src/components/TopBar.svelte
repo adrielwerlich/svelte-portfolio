@@ -46,6 +46,9 @@
               <Link to="about" style="color: white">About</Link>
               <Link to="stacks" style="color: white">Stacks</Link>
               <Link to="dog-animation" style="color: white">Dog animation</Link>
+              <Link to="parallax" style="color: white">Parallax</Link>
+              <Link to="enemies" style="color: white">Enemies</Link>
+              <Link to="explosions" style="color: white">Explosions</Link>
             </nav>
           </Section>
         </Section>
