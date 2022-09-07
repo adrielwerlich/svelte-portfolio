@@ -47,7 +47,6 @@
       projectsPt = [...projectsPt]
       projectsEn = [...projectsEn]
     }, 1000)
-    console.log("language", language)
   })
 </script>
 

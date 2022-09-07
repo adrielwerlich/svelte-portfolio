@@ -12,7 +12,7 @@
     canvas.height = 700
     canvasPosition = canvas.getBoundingClientRect()
 
-    console.log("canvasPosition", canvasPosition)
+    // console.log("canvasPosition", canvasPosition)
 
     window.addEventListener("click", function (e) {
       createAnimation(e)

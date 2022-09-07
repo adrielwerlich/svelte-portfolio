@@ -3,4 +3,4 @@ import { checkLanguage } from '../lib/Utils';
 
 export const storeLanguage = writable(checkLanguage());
 
-console.log('store language', storeLanguage);
+// console.log('store language', storeLanguage);

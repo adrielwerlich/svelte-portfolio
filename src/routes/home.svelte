@@ -9,7 +9,7 @@
 
   storeLanguage.subscribe((value) => {
     language = value
-    console.log("home imported languge from store", language)
+    // console.log("home imported languge from store", language)
 
     if (language === "portuguese") {
       title = "Me chamo Adriel. Eu gosto de criar aplicações web"
