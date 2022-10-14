@@ -4,11 +4,12 @@
   import Home from "./routes/home.svelte"
   import About from "./routes/about.svelte"
   import Stacks from "./routes/stacks.svelte"
-  import DogAnimation from "./routes/game_and_animations/game/dogAnimation.svelte"
-  import ParallaxBackground from "./routes/game_and_animations/game/parallaxBackground.svelte"
-  import Enemies from "./routes/game_and_animations/game/enemies.svelte"
-  import Explosions from "./routes/game_and_animations/game/explosions.svelte"
-  import Shoot from "./routes/game_and_animations/game/shoot.svelte"
+  import DogAnimation from "./routes/GameAndAnimations/game/dogAnimation.svelte"
+  import ParallaxBackground from "./routes/GameAndAnimations/game/parallaxBackground.svelte"
+  import Enemies from "./routes/GameAndAnimations/game/enemies.svelte"
+  import Explosions from "./routes/GameAndAnimations/game/explosions.svelte"
+  import Shoot from "./routes/GameAndAnimations/game/shoot.svelte"
+  import FullGame from "./routes/GameAndAnimations/fullGame/fullGame.svelte"
   import TopBar from "./components/TopBar.svelte"
   import sendRequestInfo from './lib/airtable.js'
 
@@ -24,7 +25,9 @@
 
       fetch("https://ipapi.co/json/")
         .then((res) => res.json())
-        .then((json) => ((ipInfo = json), console.log(json)))
+        .then((json) => ((ipInfo = json) 
+        // ,console.log(json)
+        ))
     }
   })
 
@@ -43,7 +46,7 @@
   }
 </script>
 
-<main style="display: flex; flex-direction: column; height: 100em;">
+<main style="display: flex; flex-direction: column;">
   <Router {url}>
     <div style=" width: 100%;">
       <TopBar />
@@ -58,6 +61,7 @@
       <Route path="/enemies"><Enemies /></Route>
       <Route path="/explosions"><Explosions /></Route>
       <Route path="/shoot-the-raven"><Shoot /></Route>
+      <Route path="/full-game"><FullGame /></Route>
     </div>
   </Router>
 </main>

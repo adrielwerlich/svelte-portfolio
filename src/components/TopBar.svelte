@@ -50,6 +50,7 @@
               <Link to="enemies" style="color: white">Enemies</Link>
               <Link to="explosions" style="color: white">Explosions</Link> -->
               <Link to="shoot-the-raven" style="color: white">Shoot the raven</Link>
+              <Link to="full-game" style="color: white">Full game</Link>
             </nav>
           </Section>
         </Section>
